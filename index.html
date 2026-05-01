@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>helptodo — Your Dev Setup Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #0969da;
+            --code-bg: #f6f8fa;
+            --border: #d0d7de;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --card-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+            --success: #2da44e;
+            --warning: #bf8700;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0d1117;
+            --text: #c9d1d9;
+            --accent: #00ff9d;
+            --code-bg: #161b22;
+            --border: #30363d;
+            --nav-bg: rgba(13, 17, 23, 0.8);
+            --card-bg: #0d1117;
+            --shadow: 0 4px 12px rgba(0,0,0,0.3);
+            --success: #238636;
+            --warning: #9e6a03;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #161b22;
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .intro {
+            color: #8b949e;
+            margin-bottom: 2rem;
+        }
+
+        /* Collapsible */
+        details {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: "↓";
+            font-weight: bold;
+        }
+
+        details[open] summary::after {
+            content: "↑";
+        }
+
+        .content {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Code Blocks */
+        .code-wrapper {
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Callouts */
+        .callout {
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .callout-warning {
+            border-left: 4px solid var(--warning);
+            background: rgba(191, 135, 0, 0.1);
+        }
+
+        .callout-success {
+            border-left: 4px solid var(--success);
+            background: rgba(35, 134, 54, 0.1);
+        }
+
+        /* Buttons */
+        .btn-download {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            background: var(--code-bg);
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: #0d1117;
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .navbar { padding: 0.75rem 1rem; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <nav class="navbar">
+        <a href="#" class="logo">helptodo</a>
+        <div class="nav-links">
+            <a href="#claude">Claude Tips</a>
+            <a href="#gcp">GCP Setup</a>
+            <a href="#yoloe">YOLOE + Any6D</a>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <span class="badge">Made with MyST style</span>
+        <h1>Your Dev Setup Guide</h1>
+        <p>A comprehensive walkthrough for Claude AI, GCP Cloud Workstations, and YOLOE pose estimation.</p>
+    </div>
+
+    <div class="container">
+        <!-- THEME 1: CLAUDE AI TIPS -->
+        <section id="claude">
+            <div class="section-header">
+                <h2>Claude AI Tips</h2>
+            </div>
+            <p class="intro">Master the art of prompting and utilize Claude's advanced project features. These tips cover everything from core frameworks to custom skill building.</p>
+
+            <details>
+                <summary>ICC Prompting Framework</summary>
+                <div class="content">
+                    <p>The <strong>ICC Framework</strong> is the foundation for high-quality responses:</p>
+                    <ul>
+                        <li><strong>Instruction:</strong> Clear, specific action command.</li>
+                        <li><strong>Context:</strong> Background info, persona, and constraints.</li>
+                        <li><strong>Constraint:</strong> Limitations (length, format, tone).</li>
+                    </ul>
+                    <div class="callout callout-warning">
+                        <strong>Common Mistake:</strong> Avoid over-stuffing custom instructions with generic "be concise" rules that conflict with complex tasks.
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Projects, Skills & Artifacts</summary>
+                <div class="content">
+                    <p>Use <strong>Projects</strong> to maintain context over long conversations and <strong>Skills</strong> for repeatable workflows.</p>
+                    <ul>
+                        <li><strong>Artifacts:</strong> Claude can generate HTML/JS dashboards, flowcharts (Mermaid), and interactive trackers.</li>
+                        <li><strong>Dashboards:</strong> "Match the colors of this logo for the dashboard".</li>
+                        <li><strong>Flowcharts:</strong> "Create a flowchart showing an in-depth customer onboarding process".</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>Connectors & Integration</summary>
+                <div class="content">
+                    <p>Link Claude directly to your workspace tools:</p>
+                    <ul>
+                        <li><strong>Google Drive:</strong> Analyze docs in real-time.</li>
+                        <li><strong>Slack:</strong> Summarize threads or draft replies.</li>
+                        <li><strong>Notion:</strong> Sync notes and project updates.</li>
+                    </ul>
+                </div>
+            </details>
+        </section>
+
+        <!-- THEME 2: GCP ON VS CODE VIA VM -->
+        <section id="gcp">
+            <div class="section-header">
+                <h2>GCP on VS Code via VM</h2>
+            </div>
+            <p class="intro">Setup a high-performance GPU instance on GCP and connect your local VS Code environment seamlessly using IAP tunneling.</p>
+
+            <details>
+                <summary>Step 1: Create the VM</summary>
+                <div class="content">
+                    <p>Run this script in Git Bash or WSL on Windows. It creates a VPC, firewall, NAT, and the L4 GPU instance.</p>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code># Create VM instance with L4 GPU
+gcloud compute instances create ${VM_NAME} \
+    --zone=${ZONE} \
+    --machine-type=g2-standard-4 \
+    --accelerator="type=nvidia-l4,count=1" \
+    --image-family=common-cu129-ubuntu-2204-nvidia-580 \
+    --image-project=deeplearning-platform-release \
+    --maintenance-policy=TERMINATE \
+    --network=${AIMSUSERNAME}-vpc \
+    --scopes=storage-full,cloud-platform</code></pre>
+                    </div>
+                    <a href="./create_vm_1.sh" class="btn-download">Download create_vm_1.sh</a>
+                </div>
+            </details>
+
+            <details>
+                <summary>Step 2: Windows SSH Setup (Admin)</summary>
+                <div class="content">
+                    <p>Run this in <strong>PowerShell as Administrator</strong> to fix permissions and generate the SSH config.</p>
+                    <div class="callout callout-warning">
+                        <strong>Error:</strong> "Bad owner or permissions on ssh/config". 
+                        <strong>Fix:</strong> Use icacls to restrict permissions to only your user.
+                    </div>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code># Fix .ssh folder permissions
+icacls "C:\Users\$env:USERNAME\.ssh" /inheritance:r
+icacls "C:\Users\$env:USERNAME\.ssh" /grant:r "$env:USERDOMAIN\$env:USERNAME:F"
+
+# Generate config
+gcloud compute config-ssh --project=$PROJECT_ID</code></pre>
+                    </div>
+                    <a href="./setup_windows.ps1" class="btn-download">Download setup_windows.ps1</a>
+                </div>
+            </details>
+
+            <details>
+                <summary>Step 3: Linux VM Setup</summary>
+                <div class="content">
+                    <p>Once connected to the VM via VS Code, install Docker and the NVIDIA Container Toolkit.</p>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code># Install Docker + Toolkit
+sudo apt-get install -y docker.io docker-compose-v2
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker</code></pre>
+                    </div>
+                    <div class="callout callout-success">
+                        <strong>Verified:</strong> `docker run --rm --gpus all nvidia/cuda:12.1.1-base-ubuntu22.04 nvidia-smi` confirms GPU access.
+                    </div>
+                    <a href="./setup_vm_linux.sh" class="btn-download">Download setup_vm_linux.sh</a>
+                </div>
+            </details>
+        </section>
+
+        <!-- THEME 3: YOLOE + ANY6D INSTALL -->
+        <section id="yoloe">
+            <div class="section-header">
+                <h2>YOLOE + Any6D Install</h2>
+            </div>
+            <p class="intro">Deploy the open-vocabulary 6D pose estimation pipeline. Combines YOLOE detection, MiDaS depth, and Any6D pose estimation.</p>
+
+            <details>
+                <summary>The Pipeline Logic</summary>
+                <div class="content">
+                    <p>The workflow flows from 2D detection to 3D pose:</p>
+                    <ol>
+                        <li><strong>YOLOE:</strong> Visual/Text/Free prompt to get mask + bbox.</li>
+                        <li><strong>MiDaS:</strong> Estimate depth from RGB scene.</li>
+                        <li><strong>Any6D:</strong> Generate 4x4 Pose matrix (R | t).</li>
+                    </ol>
+                </div>
+            </details>
+
+            <details>
+                <summary>Detection Modes (Python)</summary>
+                <div class="content">
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code># Visual prompt (anchor image)
+bbox, mask, conf, _ = yoloe_visual_prompt(model, SCENE_PATH, ANCHOR_PATH)
+
+# Text prompt
+bbox, mask, conf, _ = yoloe_text_prompt(model, SCENE_PATH, ['tennis ball'])</code></pre>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>GPU & Architecture Config</summary>
+                <div class="content">
+                    <p>Crucial environment variables for model compilation:</p>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code># For NVIDIA L4 (GCP G2 Instances)
+export TORCH_CUDA_ARCH_LIST="8.9"</code></pre>
+                    </div>
+                    <div class="callout callout-warning">
+                        <strong>Error:</strong> `CUDA error: 98` usually means wrong ARCH list. Ensure it matches your GPU compute capability.
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Troubleshooting & Fixes</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>pkg_resources:</strong> `pip install setuptools==69.5.1`</li>
+                        <li><strong>libGL error:</strong> `sudo apt-get install -y libgl1-mesa-glx`</li>
+                        <li><strong>Out of Memory:</strong> Resize images to 640x480 before Any6D.</li>
+                        <li><strong>No space:</strong> `docker system prune -af`</li>
+                    </ul>
+                </div>
+            </details>
+        </section>
+    </div>
+
+    <footer>
+        <p>Made with ♥ and Gemini CLI</p>
+        <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" class="footer-badge">⚡ helptodo</a>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.theme-toggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                btn.innerText = '☀️ Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                btn.innerText = '🌙 Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize Theme
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.body.setAttribute('data-theme', savedTheme);
+        document.querySelector('.theme-toggle').innerText = savedTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+
+        // Copy Functionality
+        function copyCode(btn) {
+            const code = btn.nextElementSibling.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = 'Copied!';
+                btn.style.background = '#2da44e';
+                btn.style.color = '#fff';
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
