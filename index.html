@@ -3,53 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>helptodo — Your Dev Setup Guide</title>
+    <title>helptodo — Expert Dev Setup Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
-            --accent: #0969da;
-            --code-bg: #f6f8fa;
-            --border: #d0d7de;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --border: #e2e8f0;
             --nav-bg: rgba(255, 255, 255, 0.8);
             --card-bg: #ffffff;
-            --shadow: 0 4px 12px rgba(0,0,0,0.05);
-            --success: #2da44e;
-            --warning: #bf8700;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --header-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
         }
 
         [data-theme="dark"] {
-            --bg: #0d1117;
-            --text: #c9d1d9;
-            --accent: #00ff9d;
-            --code-bg: #161b22;
-            --border: #30363d;
-            --nav-bg: rgba(13, 17, 23, 0.8);
-            --card-bg: #0d1117;
-            --shadow: 0 4px 12px rgba(0,0,0,0.3);
-            --success: #238636;
-            --warning: #9e6a03;
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --accent: #38bdf8;
+            --accent-hover: #7dd3fc;
+            --code-bg: #020617;
+            --code-text: #f1f5f9;
+            --border: #1e293b;
+            --nav-bg: rgba(15, 23, 42, 0.8);
+            --card-bg: #1e293b;
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            --success: #34d399;
+            --warning: #fbbf24;
+            --header-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
         }
 
         * {
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.2s ease;
         }
 
         body {
             margin: 0;
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
         code, pre {
             font-family: 'JetBrains Mono', monospace;
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
         /* Navbar */
         .navbar {
@@ -57,120 +74,150 @@
             top: 0;
             z-index: 1000;
             background: var(--nav-bg);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            padding: 0.75rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--accent);
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--header-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-decoration: none;
+            letter-spacing: -0.03em;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 600;
+            opacity: 0.8;
         }
 
         .nav-links a:hover {
+            opacity: 1;
             color: var(--accent);
         }
 
         .theme-toggle {
-            background: none;
+            background: var(--card-bg);
             border: 1px solid var(--border);
             color: var(--text);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 99px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
         }
 
         /* Hero */
         .hero {
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             text-align: center;
-            border-bottom: 1px solid var(--border);
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.05), transparent),
+                        radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.05), transparent);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            color: #8b949e;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            font-size: 1.4rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
         }
 
         .badge {
-            display: inline-block;
-            background: #161b22;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--code-bg);
             color: #fff;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         /* Container */
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
         }
 
         section {
-            margin-bottom: 4rem;
-            scroll-margin-top: 80px;
+            margin-bottom: 6rem;
+            scroll-margin-top: 100px;
         }
 
         .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
+            border-left: 6px solid var(--accent);
+            padding-left: 1.5rem;
         }
 
         .section-header h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin: 0;
+            letter-spacing: -0.02em;
         }
 
         .intro {
-            color: #8b949e;
-            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            color: #64748b;
+            margin-top: 0.5rem;
         }
 
-        /* Collapsible */
+        /* Cards/Collapsible */
         details {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
         }
 
         summary {
-            padding: 1rem;
-            font-weight: 600;
+            padding: 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
             cursor: pointer;
             list-style: none;
             display: flex;
@@ -179,106 +226,142 @@
         }
 
         summary::after {
-            content: "↓";
-            font-weight: bold;
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
         }
 
         details[open] summary::after {
-            content: "↑";
+            transform: rotate(45deg);
         }
 
         .content {
-            padding: 1rem;
+            padding: 0 1.5rem 1.5rem;
             border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
         }
 
         /* Code Blocks */
         .code-wrapper {
             position: relative;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
         }
 
         pre {
             background: var(--code-bg);
-            padding: 1rem;
-            border-radius: 6px;
+            color: var(--code-text);
+            padding: 1.5rem;
+            margin: 0;
             overflow-x: auto;
-            font-size: 0.9rem;
-            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .copy-btn {
             position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
             font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
         }
 
         .copy-btn:hover {
             background: var(--accent);
-            color: #fff;
+            border-color: var(--accent);
         }
 
         /* Callouts */
         .callout {
-            padding: 1rem;
-            border-radius: 0 6px 6px 0;
-            margin: 1rem 0;
-            font-size: 0.95rem;
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            font-weight: 500;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .callout::before {
+            font-size: 1.25rem;
         }
 
         .callout-warning {
-            border-left: 4px solid var(--warning);
-            background: rgba(191, 135, 0, 0.1);
+            border: 1px solid var(--warning);
+            background: rgba(245, 158, 11, 0.05);
+            color: var(--warning);
         }
+        .callout-warning::before { content: "⚠️"; }
 
         .callout-success {
-            border-left: 4px solid var(--success);
-            background: rgba(35, 134, 54, 0.1);
+            border: 1px solid var(--success);
+            background: rgba(16, 185, 129, 0.05);
+            color: var(--success);
         }
+        .callout-success::before { content: "✅"; }
 
         /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
         .btn-download {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: var(--accent);
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            color: #fff !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
             text-decoration: none;
-            font-size: 0.85rem;
-            margin-top: 1rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .btn-download:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
         /* Footer */
         footer {
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             border-top: 1px solid var(--border);
             text-align: center;
-            background: var(--code-bg);
+            background: var(--card-bg);
         }
 
         .footer-badge {
-            display: inline-block;
-            background: #0d1117;
-            color: #fff;
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--text);
+            color: var(--bg);
+            padding: 0.8rem 1.5rem;
+            border-radius: 99px;
             text-decoration: none;
-            font-size: 0.9rem;
-            margin-top: 1rem;
+            font-weight: 700;
+            margin-top: 2rem;
         }
 
-        @media (max-width: 600px) {
-            .navbar { padding: 0.75rem 1rem; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .hero h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
         }
     </style>
 </head>
@@ -286,238 +369,179 @@
     <nav class="navbar">
         <a href="#" class="logo">helptodo</a>
         <div class="nav-links">
-            <a href="#claude">Claude Tips</a>
-            <a href="#gcp">GCP Setup</a>
-            <a href="#yoloe">YOLOE + Any6D</a>
-            <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+            <a href="#claude">Claude</a>
+            <a href="#gcp">GCP VM</a>
+            <a href="#yoloe">YOLOE</a>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">🌙</span> <span id="theme-text">Dark Mode</span>
+            </button>
         </div>
     </nav>
 
     <div class="hero">
-        <span class="badge">Made with MyST style</span>
-        <h1>Your Dev Setup Guide</h1>
-        <p>A comprehensive walkthrough for Claude AI, GCP Cloud Workstations, and YOLOE pose estimation.</p>
+        <div class="badge">⚡ Powered by Gemini CLI</div>
+        <h1>Your Dev Setup<br><span style="color: var(--accent)">Optimized.</span></h1>
+        <p>Expert guides for Claude AI masterclass, GCP Cloud workstations, and 6D pose estimation deployments.</p>
     </div>
 
     <div class="container">
         <!-- THEME 1: CLAUDE AI TIPS -->
         <section id="claude">
             <div class="section-header">
-                <h2>Claude AI Tips</h2>
+                <h2>Claude AI Masterclass</h2>
+                <p class="intro">Advanced techniques for prompt engineering and system building.</p>
             </div>
-            <p class="intro">Master the art of prompting and utilize Claude's advanced project features. These tips cover everything from core frameworks to custom skill building.</p>
 
             <details>
-                <summary>ICC Prompting Framework</summary>
+                <summary>ICC Framework & Custom Instructions</summary>
                 <div class="content">
-                    <p>The <strong>ICC Framework</strong> is the foundation for high-quality responses:</p>
-                    <ul>
-                        <li><strong>Instruction:</strong> Clear, specific action command.</li>
-                        <li><strong>Context:</strong> Background info, persona, and constraints.</li>
-                        <li><strong>Constraint:</strong> Limitations (length, format, tone).</li>
-                    </ul>
+                    <p>The <strong>ICC (Instruction, Context, Constraint)</strong> framework ensures Claude follows complex logic without losing focus.</p>
                     <div class="callout callout-warning">
-                        <strong>Common Mistake:</strong> Avoid over-stuffing custom instructions with generic "be concise" rules that conflict with complex tasks.
+                        <strong>Pro Tip:</strong> Most tutorials tell you to add "be concise" to global instructions. This actually breaks Claude's ability to reason through complex coding tasks. Use project-specific instructions instead.
                     </div>
                 </div>
             </details>
 
             <details>
-                <summary>Projects, Skills & Artifacts</summary>
+                <summary>Projects & Artifacts Workflow</summary>
                 <div class="content">
-                    <p>Use <strong>Projects</strong> to maintain context over long conversations and <strong>Skills</strong> for repeatable workflows.</p>
+                    <p>Learn to use <strong>Artifacts</strong> to build real-time visual tools:</p>
                     <ul>
-                        <li><strong>Artifacts:</strong> Claude can generate HTML/JS dashboards, flowcharts (Mermaid), and interactive trackers.</li>
-                        <li><strong>Dashboards:</strong> "Match the colors of this logo for the dashboard".</li>
-                        <li><strong>Flowcharts:</strong> "Create a flowchart showing an in-depth customer onboarding process".</li>
-                    </ul>
-                </div>
-            </details>
-
-            <details>
-                <summary>Connectors & Integration</summary>
-                <div class="content">
-                    <p>Link Claude directly to your workspace tools:</p>
-                    <ul>
-                        <li><strong>Google Drive:</strong> Analyze docs in real-time.</li>
-                        <li><strong>Slack:</strong> Summarize threads or draft replies.</li>
-                        <li><strong>Notion:</strong> Sync notes and project updates.</li>
+                        <li><strong>Live Dashboards:</strong> "Build a React dashboard with Tailwind that matches the primary colors of the uploaded logo."</li>
+                        <li><strong>Flowcharts:</strong> "Visualize this system architecture as a Mermaid.js diagram."</li>
                     </ul>
                 </div>
             </details>
         </section>
 
-        <!-- THEME 2: GCP ON VS CODE VIA VM -->
+        <!-- THEME 2: GCP ON VS CODE -->
         <section id="gcp">
             <div class="section-header">
-                <h2>GCP on VS Code via VM</h2>
+                <h2>GCP & VS Code on Windows</h2>
+                <p class="intro">Solving SSH permission issues and IAP tunneling for seamless remote dev.</p>
             </div>
-            <p class="intro">Setup a high-performance GPU instance on GCP and connect your local VS Code environment seamlessly using IAP tunneling.</p>
 
             <details>
-                <summary>Step 1: Create the VM</summary>
+                <summary>Fixing SSH Permissions (The `icacls` Solution)</summary>
                 <div class="content">
-                    <p>Run this script in Git Bash or WSL on Windows. It creates a VPC, firewall, NAT, and the L4 GPU instance.</p>
+                    <p>Windows often creates "Bad owner or permissions" errors for `ssh/config`. Run this in PowerShell as Admin:</p>
                     <div class="code-wrapper">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># Create VM instance with L4 GPU
-gcloud compute instances create ${VM_NAME} \
-    --zone=${ZONE} \
+                        <pre><code># Secure your SSH config on Windows
+$path = "C:\Users\$env:USERNAME\.ssh\config"
+icacls $path /inheritance:r
+icacls $path /grant:r "$($env:USERDOMAIN)\$($env:USERNAME):F"</code></pre>
+                    </div>
+                    <div class="btn-group">
+                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/setup_windows.ps1" class="btn-download" download>Download .ps1 Setup</a>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>GCP VM Creation (L4 GPU)</summary>
+                <div class="content">
+                    <p>Automate the creation of a G2 instance with high-performance NVIDIA L4 GPUs.</p>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code>gcloud compute instances create helptodo-vm \
     --machine-type=g2-standard-4 \
     --accelerator="type=nvidia-l4,count=1" \
     --image-family=common-cu129-ubuntu-2204-nvidia-580 \
-    --image-project=deeplearning-platform-release \
-    --maintenance-policy=TERMINATE \
-    --network=${AIMSUSERNAME}-vpc \
-    --scopes=storage-full,cloud-platform</code></pre>
+    --image-project=deeplearning-platform-release</code></pre>
                     </div>
-                    <a href="./create_vm_1.sh" class="btn-download">Download create_vm_1.sh</a>
-                </div>
-            </details>
-
-            <details>
-                <summary>Step 2: Windows SSH Setup (Admin)</summary>
-                <div class="content">
-                    <p>Run this in <strong>PowerShell as Administrator</strong> to fix permissions and generate the SSH config.</p>
-                    <div class="callout callout-warning">
-                        <strong>Error:</strong> "Bad owner or permissions on ssh/config". 
-                        <strong>Fix:</strong> Use icacls to restrict permissions to only your user.
+                    <div class="btn-group">
+                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/create_vm_1.sh" class="btn-download" download>Download .sh Creator</a>
                     </div>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># Fix .ssh folder permissions
-icacls "C:\Users\$env:USERNAME\.ssh" /inheritance:r
-icacls "C:\Users\$env:USERNAME\.ssh" /grant:r "$env:USERDOMAIN\$env:USERNAME:F"
-
-# Generate config
-gcloud compute config-ssh --project=$PROJECT_ID</code></pre>
-                    </div>
-                    <a href="./setup_windows.ps1" class="btn-download">Download setup_windows.ps1</a>
-                </div>
-            </details>
-
-            <details>
-                <summary>Step 3: Linux VM Setup</summary>
-                <div class="content">
-                    <p>Once connected to the VM via VS Code, install Docker and the NVIDIA Container Toolkit.</p>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># Install Docker + Toolkit
-sudo apt-get install -y docker.io docker-compose-v2
-sudo nvidia-ctk runtime configure --runtime=docker
-sudo systemctl restart docker</code></pre>
-                    </div>
-                    <div class="callout callout-success">
-                        <strong>Verified:</strong> `docker run --rm --gpus all nvidia/cuda:12.1.1-base-ubuntu22.04 nvidia-smi` confirms GPU access.
-                    </div>
-                    <a href="./setup_vm_linux.sh" class="btn-download">Download setup_vm_linux.sh</a>
                 </div>
             </details>
         </section>
 
-        <!-- THEME 3: YOLOE + ANY6D INSTALL -->
+        <!-- THEME 3: YOLOE + ANY6D -->
         <section id="yoloe">
             <div class="section-header">
-                <h2>YOLOE + Any6D Install</h2>
+                <h2>YOLOE + Any6D Pipeline</h2>
+                <p class="intro">Open-vocabulary 6D pose estimation deployment guide.</p>
             </div>
-            <p class="intro">Deploy the open-vocabulary 6D pose estimation pipeline. Combines YOLOE detection, MiDaS depth, and Any6D pose estimation.</p>
 
             <details>
-                <summary>The Pipeline Logic</summary>
+                <summary>Installation & Environment Setup</summary>
                 <div class="content">
-                    <p>The workflow flows from 2D detection to 3D pose:</p>
-                    <ol>
-                        <li><strong>YOLOE:</strong> Visual/Text/Free prompt to get mask + bbox.</li>
-                        <li><strong>MiDaS:</strong> Estimate depth from RGB scene.</li>
-                        <li><strong>Any6D:</strong> Generate 4x4 Pose matrix (R | t).</li>
-                    </ol>
-                </div>
-            </details>
-
-            <details>
-                <summary>Detection Modes (Python)</summary>
-                <div class="content">
+                    <p>Setup the Docker environment with NVIDIA Container Toolkit for model-free pose estimation.</p>
                     <div class="code-wrapper">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># Visual prompt (anchor image)
-bbox, mask, conf, _ = yoloe_visual_prompt(model, SCENE_PATH, ANCHOR_PATH)
-
-# Text prompt
-bbox, mask, conf, _ = yoloe_text_prompt(model, SCENE_PATH, ['tennis ball'])</code></pre>
+                        <pre><code># Install NVIDIA Container Toolkit
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+# ... restart docker
+sudo systemctl restart docker</code></pre>
+                    </div>
+                    <div class="btn-group">
+                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/setup_vm_linux.sh" class="btn-download" download>Download .sh Setup</a>
                     </div>
                 </div>
             </details>
 
             <details>
-                <summary>GPU & Architecture Config</summary>
+                <summary>Common Errors & Fixes</summary>
                 <div class="content">
-                    <p>Crucial environment variables for model compilation:</p>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># For NVIDIA L4 (GCP G2 Instances)
-export TORCH_CUDA_ARCH_LIST="8.9"</code></pre>
-                    </div>
                     <div class="callout callout-warning">
-                        <strong>Error:</strong> `CUDA error: 98` usually means wrong ARCH list. Ensure it matches your GPU compute capability.
+                        <strong>CUDA 98 Error:</strong> This happens when `TORCH_CUDA_ARCH_LIST` is not set correctly for the L4 GPU.
                     </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Troubleshooting & Fixes</summary>
-                <div class="content">
-                    <ul>
-                        <li><strong>pkg_resources:</strong> `pip install setuptools==69.5.1`</li>
-                        <li><strong>libGL error:</strong> `sudo apt-get install -y libgl1-mesa-glx`</li>
-                        <li><strong>Out of Memory:</strong> Resize images to 640x480 before Any6D.</li>
-                        <li><strong>No space:</strong> `docker system prune -af`</li>
-                    </ul>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code># Fix for L4 GPU compute capability
+export TORCH_CUDA_ARCH_LIST="8.9"
+pip install setuptools==69.5.1</code></pre>
+                    </div>
                 </div>
             </details>
         </section>
     </div>
 
     <footer>
-        <p>Made with ♥ and Gemini CLI</p>
-        <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" class="footer-badge">⚡ helptodo</a>
+        <p>Built for the community with ♥ and Gemini CLI</p>
+        <a href="https://github.com/josue-do-it/helptodo" class="footer-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.038-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            josue-do-it/helptodo
+        </a>
     </footer>
 
     <script>
-        // Theme Toggle Logic
         function toggleTheme() {
             const body = document.body;
-            const btn = document.querySelector('.theme-toggle');
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                btn.innerText = '☀️ Light Mode';
+                icon.innerText = '☀️';
+                text.innerText = 'Light Mode';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                btn.innerText = '🌙 Dark Mode';
+                icon.innerText = '🌙';
+                text.innerText = 'Dark Mode';
                 localStorage.setItem('theme', 'light');
             }
         }
 
-        // Initialize Theme
         const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.body.setAttribute('data-theme', savedTheme);
-        document.querySelector('.theme-toggle').innerText = savedTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+        document.getElementById('theme-icon').innerText = savedTheme === 'dark' ? '☀️' : '🌙';
+        document.getElementById('theme-text').innerText = savedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
 
-        // Copy Functionality
         function copyCode(btn) {
             const code = btn.nextElementSibling.innerText;
             navigator.clipboard.writeText(code).then(() => {
                 const originalText = btn.innerText;
-                btn.innerText = 'Copied!';
-                btn.style.background = '#2da44e';
-                btn.style.color = '#fff';
+                btn.innerText = 'Copied! ✅';
+                btn.style.background = '#10b981';
                 setTimeout(() => {
                     btn.innerText = originalText;
                     btn.style.background = '';
-                    btn.style.color = '';
                 }, 2000);
             });
         }
-    </script>
+    </div>
 </body>
 </html>
