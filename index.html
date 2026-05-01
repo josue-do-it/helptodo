@@ -21,7 +21,6 @@
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --success: #10b981;
             --warning: #f59e0b;
-            --danger: #ef4444;
             --header-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
         }
 
@@ -62,13 +61,6 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-        /* Navbar */
         .navbar {
             position: sticky;
             top: 0;
@@ -106,11 +98,6 @@
             opacity: 0.8;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
-            color: var(--accent);
-        }
-
         .theme-toggle {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -126,12 +113,6 @@
             gap: 0.5rem;
         }
 
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-        }
-
-        /* Hero */
         .hero {
             padding: 6rem 2rem;
             text-align: center;
@@ -168,7 +149,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* Container */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -193,13 +173,6 @@
             letter-spacing: -0.02em;
         }
 
-        .intro {
-            font-size: 1.15rem;
-            color: #64748b;
-            margin-top: 0.5rem;
-        }
-
-        /* Cards/Collapsible */
         details {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -242,7 +215,6 @@
             padding-top: 1.5rem;
         }
 
-        /* Code Blocks */
         .code-wrapper {
             position: relative;
             margin: 1.5rem 0;
@@ -276,12 +248,6 @@
             cursor: pointer;
         }
 
-        .copy-btn:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
-        /* Callouts */
         .callout {
             padding: 1.25rem 1.5rem;
             border-radius: 12px;
@@ -292,25 +258,12 @@
             align-items: flex-start;
         }
 
-        .callout::before {
-            font-size: 1.25rem;
-        }
-
         .callout-warning {
             border: 1px solid var(--warning);
             background: rgba(245, 158, 11, 0.05);
             color: var(--warning);
         }
-        .callout-warning::before { content: "⚠️"; }
 
-        .callout-success {
-            border: 1px solid var(--success);
-            background: rgba(16, 185, 129, 0.05);
-            color: var(--success);
-        }
-        .callout-success::before { content: "✅"; }
-
-        /* Buttons */
         .btn-group {
             display: flex;
             gap: 1rem;
@@ -331,13 +284,6 @@
             transition: all 0.2s ease;
         }
 
-        .btn-download:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Footer */
         footer {
             padding: 6rem 2rem;
             border-top: 1px solid var(--border);
@@ -356,12 +302,6 @@
             text-decoration: none;
             font-weight: 700;
             margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .container { padding: 1rem; }
         }
     </style>
 </head>
@@ -385,73 +325,48 @@
     </div>
 
     <div class="container">
-        <!-- THEME 1: CLAUDE AI TIPS -->
+        <!-- THEME 1: CLAUDE AI -->
         <section id="claude">
             <div class="section-header">
                 <h2>Claude AI Masterclass</h2>
-                <p class="intro">Advanced techniques for prompt engineering and system building.</p>
             </div>
-
             <details>
-                <summary>ICC Framework & Custom Instructions</summary>
+                <summary>Framework ICC & Artifacts</summary>
                 <div class="content">
-                    <p>The <strong>ICC (Instruction, Context, Constraint)</strong> framework ensures Claude follows complex logic without losing focus.</p>
+                    <p>Optimisez vos interactions avec le framework <strong>Instruction-Context-Constraint</strong>.</p>
                     <div class="callout callout-warning">
-                        <strong>Pro Tip:</strong> Most tutorials tell you to add "be concise" to global instructions. This actually breaks Claude's ability to reason through complex coding tasks. Use project-specific instructions instead.
+                        <strong>Note:</strong> Évitez les instructions globales trop restrictives pour le code complexe.
                     </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Projects & Artifacts Workflow</summary>
-                <div class="content">
-                    <p>Learn to use <strong>Artifacts</strong> to build real-time visual tools:</p>
-                    <ul>
-                        <li><strong>Live Dashboards:</strong> "Build a React dashboard with Tailwind that matches the primary colors of the uploaded logo."</li>
-                        <li><strong>Flowcharts:</strong> "Visualize this system architecture as a Mermaid.js diagram."</li>
-                    </ul>
                 </div>
             </details>
         </section>
 
-        <!-- THEME 2: GCP ON VS CODE -->
+        <!-- THEME 2: GCP & VS CODE -->
         <section id="gcp">
             <div class="section-header">
                 <h2>GCP & VS Code on Windows</h2>
-                <p class="intro">Solving SSH permission issues and IAP tunneling for seamless remote dev.</p>
             </div>
-
             <details>
-                <summary>Fixing SSH Permissions (The `icacls` Solution)</summary>
+                <summary>Fix SSH Permissions (icacls)</summary>
                 <div class="content">
-                    <p>Windows often creates "Bad owner or permissions" errors for `ssh/config`. Run this in PowerShell as Admin:</p>
                     <div class="code-wrapper">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># Secure your SSH config on Windows
+                        <pre><code># Fix SSH config permissions on Windows
 $path = "C:\Users\$env:USERNAME\.ssh\config"
 icacls $path /inheritance:r
 icacls $path /grant:r "$($env:USERDOMAIN)\$($env:USERNAME):F"</code></pre>
                     </div>
                     <div class="btn-group">
-                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/setup_windows.ps1" class="btn-download" download>Download .ps1 Setup</a>
+                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/setup_windows.ps1" class="btn-download" download>Download setup_windows.ps1</a>
                     </div>
                 </div>
             </details>
-
             <details>
-                <summary>GCP VM Creation (L4 GPU)</summary>
+                <summary>Create VM (L4 GPU)</summary>
                 <div class="content">
-                    <p>Automate the creation of a G2 instance with high-performance NVIDIA L4 GPUs.</p>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code>gcloud compute instances create helptodo-vm \
-    --machine-type=g2-standard-4 \
-    --accelerator="type=nvidia-l4,count=1" \
-    --image-family=common-cu129-ubuntu-2204-nvidia-580 \
-    --image-project=deeplearning-platform-release</code></pre>
-                    </div>
                     <div class="btn-group">
-                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/create_vm_1.sh" class="btn-download" download>Download .sh Creator</a>
+                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/create_vm_1.sh" class="btn-download" download>Download create_vm_1.sh</a>
+                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/create_vm2.sh" class="btn-download" download>Download create_vm2.sh</a>
                     </div>
                 </div>
             </details>
@@ -461,37 +376,12 @@ icacls $path /grant:r "$($env:USERDOMAIN)\$($env:USERNAME):F"</code></pre>
         <section id="yoloe">
             <div class="section-header">
                 <h2>YOLOE + Any6D Pipeline</h2>
-                <p class="intro">Open-vocabulary 6D pose estimation deployment guide.</p>
             </div>
-
             <details>
-                <summary>Installation & Environment Setup</summary>
+                <summary>Docker & GPU Setup</summary>
                 <div class="content">
-                    <p>Setup the Docker environment with NVIDIA Container Toolkit for model-free pose estimation.</p>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># Install NVIDIA Container Toolkit
-curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
-# ... restart docker
-sudo systemctl restart docker</code></pre>
-                    </div>
                     <div class="btn-group">
-                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/setup_vm_linux.sh" class="btn-download" download>Download .sh Setup</a>
-                    </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Common Errors & Fixes</summary>
-                <div class="content">
-                    <div class="callout callout-warning">
-                        <strong>CUDA 98 Error:</strong> This happens when `TORCH_CUDA_ARCH_LIST` is not set correctly for the L4 GPU.
-                    </div>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code># Fix for L4 GPU compute capability
-export TORCH_CUDA_ARCH_LIST="8.9"
-pip install setuptools==69.5.1</code></pre>
+                        <a href="https://raw.githubusercontent.com/josue-do-it/helptodo/main/setup_vm_linux.sh" class="btn-download" download>Download setup_vm_linux.sh</a>
                     </div>
                 </div>
             </details>
@@ -499,10 +389,13 @@ pip install setuptools==69.5.1</code></pre>
     </div>
 
     <footer>
-        <p>Built for the community with ♥ and Gemini CLI</p>
+        <p>Built with ♥ and Gemini CLI</p>
         <a href="https://github.com/josue-do-it/helptodo" class="footer-badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.038-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
             josue-do-it/helptodo
+        </a>
+        <br><br>
+        <a href="https://mystmd.org/made-with-myst" style="text-decoration:none">
+            <span style="background:#000; color:#fff; padding:5px 10px; border-radius:5px; font-weight:bold">Made with MyST</span>
         </a>
     </footer>
 
@@ -511,21 +404,17 @@ pip install setuptools==69.5.1</code></pre>
             const body = document.body;
             const icon = document.getElementById('theme-icon');
             const text = document.getElementById('theme-text');
-            
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                icon.innerText = '☀️';
-                text.innerText = 'Light Mode';
+                icon.innerText = '☀️'; text.innerText = 'Light Mode';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                icon.innerText = '🌙';
-                text.innerText = 'Dark Mode';
+                icon.innerText = '🌙'; text.innerText = 'Dark Mode';
                 localStorage.setItem('theme', 'light');
             }
         }
-
-        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const savedTheme = localStorage.getItem('theme') || 'light';
         document.body.setAttribute('data-theme', savedTheme);
         document.getElementById('theme-icon').innerText = savedTheme === 'dark' ? '☀️' : '🌙';
         document.getElementById('theme-text').innerText = savedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
@@ -535,13 +424,9 @@ pip install setuptools==69.5.1</code></pre>
             navigator.clipboard.writeText(code).then(() => {
                 const originalText = btn.innerText;
                 btn.innerText = 'Copied! ✅';
-                btn.style.background = '#10b981';
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.background = '';
-                }, 2000);
+                setTimeout(() => { btn.innerText = originalText; }, 2000);
             });
         }
-    </div>
+    </script>
 </body>
 </html>
